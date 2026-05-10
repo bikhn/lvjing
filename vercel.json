@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd filter-website && npm run build",
+  "outputDirectory": "filter-website/dist",
+  "devCommand": "cd filter-website && npm run dev"
+}
