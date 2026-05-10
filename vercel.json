@@ -1,5 +1,17 @@
 {
-  "buildCommand": "cd filter-website && npm run build",
-  "outputDirectory": "filter-website/dist",
-  "devCommand": "cd filter-website && npm run dev"
+  "builds": [
+    {
+      "src": "filter-website/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "filter-website/dist/$1"
+    }
+  ]
 }
