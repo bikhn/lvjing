@@ -1,0 +1,9 @@
+{
+  "name": "lvjing",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd filter-website && npm install && npm run build",
+    "dev": "cd filter-website && npm run dev"
+  }
+}
