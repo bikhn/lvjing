@@ -1,6 +1,6 @@
 import './styles/main.css'
 import allFilters, { categories } from './data/filters.js'
-import { createSampleImage, applyFilterToOutput } from './engine/filterEngine.js'
+import { createSampleImage, applyFilter } from './engine/filterEngine.js'
 import { initUploader } from './ui/uploader.js'
 import { initFilterPanel } from './ui/filterPanel.js'
 import { initPreview } from './ui/preview.js'
@@ -74,7 +74,8 @@ btnShare.onclick = async () => {
   }
   try {
     const exportCanvas = document.createElement('canvas')
-    applyFilterToOutput(exportCanvas, state.image, state.currentFilter)
+    const intensity = document.getElementById('intensity-slider').value / 100
+    applyFilter(exportCanvas, state.image, state.currentFilter, intensity)
     const blob = await new Promise(r => exportCanvas.toBlob(r, 'image/png'))
     if (blob) {
       await navigator.clipboard.write([
