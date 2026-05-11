@@ -18,6 +18,7 @@ const preview = initPreview({
 const exportMod = initExport({
   getImage: () => state.image,
   getFilter: () => state.currentFilter,
+  getIntensity: () => document.getElementById('intensity-slider').value / 100,
 })
 
 const filterPanel = initFilterPanel({

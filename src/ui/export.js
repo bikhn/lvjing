@@ -1,7 +1,7 @@
-import { applyFilterToOutput } from '../engine/filterEngine.js'
+import { applyFilter } from '../engine/filterEngine.js'
 import { generateFilename } from '../utils/helpers.js'
 
-export function initExport({ getImage, getFilter }) {
+export function initExport({ getImage, getFilter, getIntensity }) {
   const btnExport = document.getElementById('btn-export')
   const modal = document.getElementById('export-modal')
   const btnConfirm = document.getElementById('btn-confirm-export')
@@ -38,11 +38,12 @@ export function initExport({ getImage, getFilter }) {
   btnConfirm.onclick = () => {
     const img = getImage()
     const filter = getFilter()
+    const intensity = getIntensity ? getIntensity() : 1.0
     if (!img || !filter) return
 
     try {
       const off = document.createElement('canvas')
-      applyFilterToOutput(off, img, filter)
+      applyFilter(off, img, filter, intensity)
 
       const ext = format === 'image/jpeg' ? 'jpg' : 'png'
       const filename = generateFilename(filter.name || 'filter') + '.' + ext
